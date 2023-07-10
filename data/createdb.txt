@@ -1,0 +1,112 @@
+CREATE
+(Start:Node {name: 'Start'}),
+
+(N1_1: Symptom {name: 'ไม่ค่อยรู้สึกตัว'}),
+(N1_2: Symptom {name: 'ปวดศีรษะมาก'}),
+(N1_3: Symptom {name: 'อาเจียนรุนเเรง'}),
+(N1_4: Symptom {name: 'ชัก'}),
+
+(N1_1_1: Symptom {name: 'คอแข็ง'}),
+(N1_1_2: Symptom {name: 'กระหม่อมโป่งตึงในเด็กเล็ก'}),
+
+(N1_2_1: Symptom {name: 'เคยเข้าไปในดงมาลาเรีย'}),
+(N1_2_2: Symptom {name: 'เคยรับถ่ายเลือด'}),
+
+(N1_3_1: Symptom {name: 'เคยถูกสุนัขหรือแมวกัด'}),
+(N1_3_2: Symptom {name: 'เคยถูกสุนัขหรือแมวข่วน'}),
+(N1_3_3: Symptom {name: 'มีอาการกลัวลม'}),
+
+(N1_4_1: Symptom {name: 'หลังเผชิญคลื่นความร้อน'}),
+(N1_4_2: Symptom {name: 'ออกกำลังท่ามกลางอากาศร้อน'}),
+
+(N1_5_1: Symptom {name: 'รู้สึกตัวดี'}),
+
+(N1_6_1: Symptom {name: 'ขากรรไกรเเข็ง'}),
+(N1_6_2: Symptom {name: 'หลังเเอ่น'}),
+(N1_6_3: Symptom {name: 'ชักบ่อยเวลาสัมผัสถูก'}),
+(N1_6_4: Symptom {name: 'ถูกเเสงสว่าง'}),
+(N1_6_5: Symptom {name: 'ถูกเสียงดังๆ'}),
+
+(N1_7_1: Symptom {name: 'ชักชั่วขณะ'}),
+
+(N2_1: Symptom {name: 'มีภาวะช็อค'}),
+
+(Q1_1:Question {joinType: 'OR'}),
+(Q1_1_1:Question {joinType: 'OR'}),
+(Q1_1_2:Question {joinType: 'OR'}),
+(Q1_1_3_1:Question {joinType: 'OR'}),
+(Q1_1_3_2:Question {joinType: 'AND'}),
+(Q1_1_4:Question {joinType: 'OR'}),
+(Q1_1_5:Question {joinType: 'OR'}),
+(Q1_1_6:Question {joinType: 'OR'}),
+(Q1_1_7:Question {joinType: 'OR'}),
+
+(D1_1_1:Diagnosis {name: 'เยื่อหุ้มสมองอักเสบ'}),
+(D1_1_2:Diagnosis {name: 'เลือดออกในสมอง'}),
+(D1_1_3:Diagnosis {name: 'ฝีสมอง'}),
+(D1_2_1:Diagnosis {name: 'มาลาเรียขึ้นสมอง'}),
+(D1_3_1:Diagnosis {name: 'โรคพิษสุนัขบ้า'}),
+(D1_4_1:Diagnosis {name: 'โรคลมจากความร้อน'}),
+(D1_5_1:Diagnosis {name: 'สมองอักเสบ'}),
+(D1_5_2:Diagnosis {name: 'เล็ปโตสไปโรซิส'}),
+(D1_6_1:Diagnosis {name: 'บาดทะยัก'}),
+(D1_7_1:Diagnosis {name: 'ชักจากไข้'}),
+
+(Start)-[:FIRST]->(Q1_1),
+(Q1_1)-[:CONDITION]->(N1_1),
+(Q1_1)-[:CONDITION]->(N1_2),
+(Q1_1)-[:CONDITION]->(N1_3),
+(Q1_1)-[:CONDITION]->(N1_4),
+
+(Q1_1_1)-[:CONDITION]->(N1_1_1),
+(Q1_1_1)-[:CONDITION]->(N1_1_2),
+
+(Q1_1_2)-[:CONDITION]->(N1_2_1),
+(Q1_1_2)-[:CONDITION]->(N1_2_2),
+
+(Q1_1_3_1)-[:CONDITION]->(N1_3_1),
+(Q1_1_3_1)-[:CONDITION]->(N1_3_2),
+
+(Q1_1_3_2)-[:CONDITION]->(N1_3_3),
+
+(Q1_1_4)-[:CONDITION]->(N1_4_1),
+(Q1_1_4)-[:CONDITION]->(N1_4_2),
+
+(Q1_1_5)-[:CONDITION]->(N1_5_1),
+
+(Q1_1_6)-[:CONDITION]->(N1_6_1),
+(Q1_1_6)-[:CONDITION]->(N1_6_2),
+(Q1_1_6)-[:CONDITION]->(N1_6_3),
+(Q1_1_6)-[:CONDITION]->(N1_6_4),
+(Q1_1_6)-[:CONDITION]->(N1_6_5),
+
+(Q1_1_7)-[:CONDITION]->(N1_7_1),
+
+(Q1_1)-[:YES]->(Q1_1_1),
+(Q1_1)-[:NO]->(N2_1),
+
+(Q1_1_1)-[:YES]->(D1_1_1),
+(Q1_1_1)-[:YES]->(D1_1_2),
+(Q1_1_1)-[:YES]->(D1_1_3),
+(Q1_1_1)-[:NO]->(Q1_1_2),
+
+(Q1_1_2)-[:YES]->(D1_2_1),
+(Q1_1_2)-[:NO]->(Q1_1_3_1),
+
+(Q1_1_3_1)-[:YES]->(Q1_1_3_2),
+(Q1_1_3_1)-[:NO]->(Q1_1_4),
+
+(Q1_1_3_2)-[:YES]->(D1_3_1),
+(Q1_1_3_2)-[:NO]->(Q1_1_4),
+
+(Q1_1_4)-[:YES]->(D1_4_1),
+(Q1_1_4)-[:NO]->(Q1_1_5),
+
+(Q1_1_5)-[:YES]->(D1_5_1),
+(Q1_1_5)-[:YES]->(D1_5_2),
+(Q1_1_5)-[:NO]->(Q1_1_6),
+
+(Q1_1_6)-[:YES]->(D1_6_1),
+(Q1_1_6)-[:NO]->(Q1_1_7),
+
+(Q1_1_7)-[:YES]->(D1_7_1)

@@ -1,0 +1,17 @@
+certifi==2023.5.7
+charset-normalizer==3.2.0
+fuzzywuzzy==0.18.0
+idna==3.4
+interchange==2021.0.4
+monotonic==1.6
+neo4j==5.10.0
+packaging==23.1
+pansi==2020.7.3
+py2neo==2021.2.3
+Pygments==2.15.1
+pythainlp==4.0.2
+pytz==2023.3
+requests==2.31.0
+six==1.16.0
+tzdata==2023.3
+urllib3==2.0.3
